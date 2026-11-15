@@ -1,22 +1,25 @@
 {
-   "name": "ai-powered-apps",
-   "module": "index.ts",
-   "type": "module",
-   "private": true,
-   "scripts": {
-      "typecheck": "bun check",
-      "dev": "bun run index.ts",
-      "format": "prettier --write ."
-   },
-   "devDependencies": {
-      "@types/bun": "latest",
-      "concurrently": "^10.0.7",
-      "prettier": "^3.10.1"
-   },
-   "peerDependencies": {
-      "typescript": "^7"
-   },
-   "workspaces": [
-      "packages/*"
-   ]
+  "name": "ai-powered-apps",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "typecheck": "bun check",
+    "dev": "bun run index.ts",
+    "format": "prettier --write .",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "concurrently": "^10.0.7",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.10.1"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
