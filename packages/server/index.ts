@@ -1,22 +1,21 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import type { Request, Response } from 'express';
 import OpenAI from 'openai';
 import z from 'zod';
 
-import dotenv from 'dotenv';
-dotenv.config();
+import { conversationRepository } from './repositories/conversation.repository';
 
 const app = express();
+app.use(express.json());
 
 const port = process.env.PORT || 3000;
-
-app.use(express.json());
 
 const client = new OpenAI({
    apiKey: process.env.OPENAI_API_KEY,
 });
-
-const conversations = new Map<string, string>();
 
 const chatSchema = z.object({
    prompt: z
@@ -40,10 +39,11 @@ app.post('/api/chat', async (req: Request, res: Response) => {
          input: prompt,
          temperature: 0.2,
          max_output_tokens: 100,
-         previous_response_id: conversations.get(conversationId),
+         previous_response_id:
+            conversationRepository.getLastResponseId(conversationId),
       });
 
-      conversations.set(conversationId, response.id);
+      conversationRepository.setLastResponseId(conversationId, response.id);
 
       res.json({ message: response.output_text });
    } catch (error) {
