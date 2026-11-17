@@ -32,11 +32,14 @@ export const chatService = {
       // };
 
       //Mocking the OpenAI service call
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      const message =
+         'This is a test response to verify that the API is working correctly and returning data as expected The request was successfully processed, and the server generated this sample message.';
 
       return {
          id: crypto.randomUUID(),
-         message: 'Testing API ...',
+         message,
       };
    },
 };
