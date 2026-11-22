@@ -11,7 +11,7 @@ type ChatResponse = {
 const ChatBot = () => {
    const [messages, setMessages] = useState<Message[]>([]);
    const [isBotTyping, setIsBotTyping] = useState(false);
-   const [error, setError] = useState('false');
+   const [error, setError] = useState(false);
    const conversationId = useRef(crypto.randomUUID());
 
    const onSubmit = async ({ prompt }: ChatFormData) => {
